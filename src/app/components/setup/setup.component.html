@@ -1,0 +1,70 @@
+
+<div class='container-fluid'>
+	
+	<img src="../../../assets/images/Setup/wall-pattern.jpg">
+
+	<div class='row main d-flex justify-content-center align-items-center'>
+		
+		<div class='col-6 p-0 bg-white setup-container pb-5 d-flex flex-column'>
+			<div class='d-flex justify-content-between align-items-center heading py-3 px-4'>
+				<p class='m-0 h4 text-muted'>Sort</p>
+				<i class='fa fa-refresh'></i>
+			</div>
+			<div class='setup-body px-4 mt-4'>
+				<div class='row'>
+					<div class='col-6 form-group'>
+						<input type="text" name="" class='form-control' placeholder='Event Name'>
+					</div>
+					<div class='col-6 d-flex flex-column'>
+						<div class='d-flex'>
+							<input type="text" name="aisle" [(ngModel)]='formDetails.aisle' class='form-control mr-2' placeholder="Aisle Name" #aisle>
+							<button (click)='addAisle()'>Add</button>
+						</div>
+						<div class='d-flex align-items-end'>
+							<p class='m-0 mt-2 mr-2'>0 Aisles</p>
+							<a href="" style='color:unset;'>View</a>
+						</div>
+					</div>
+					<div class='col-6 d-flex flex-column mt-3'>
+						<select class='custom-select mr-2'>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<p class='mt-2'>Postings per aisle</p>
+					</div>
+					<div class='col-6 d-flex flex-column mt-3'>
+						<select class='custom-select mr-2'>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<p class='mt-2'>Stewards per posting</p>
+					</div>
+					<div class='col-6 mt-2 d-flex align-items-end'>
+						<div class='custom-control custom-checkbox pl-0'>
+						 	<div class="custom-control custom-checkbox">
+								<input type="checkbox" class='custom-control-input' id="coordinators" (click)='toggleCoordinators()' checked>
+								<label class="custom-control-label" for="coordinators">With Coordinators ?</label>
+							</div>
+						</div>
+					</div>									
+					<div class='col-6 d-flex mt-2'>
+						<input type="text" name="" class='form-control mr-2' placeholder="Coordinator Name">
+						<div style='position:relative;'>
+							<button (click)='addCoordinator()' style='height:100%;'>Add</button>
+							<div class='overlay' [class.active]='overlayActive' #overlay></div>
+						</div>
+					</div>
+					<div class='col-6 mt-4'>
+						<button class='py-2 px-4 start'>Get Cracking</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
