@@ -1,7 +1,9 @@
 
-*
+
+a
 {
-	font-family:'Quicksand', sans-serif;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 .container-fluid
@@ -17,12 +19,48 @@
 
 .setup-container
 {
-	/*background:rgba(255,255,255,0.95);*/
+	position:relative;
+}
+
+.aisles-container, .coordinator-container
+{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:50%;
+	background:rgba(255,255,255,0.95);
+	z-index:-1;
+	overflow-y: auto;
+	font-family:'Raleway', sans-serif;
+}
+
+
+.aisles-container.active, .coordinator-container.active
+{
+	z-index:9999;
+}
+
+.title
+{
+	font-size:1.3em;
+}
+
+
+.element
+{
+	font-size:1.2em;
 }
 
 .heading
 {
 	border-bottom:1px solid rgba(0,0,0,0.02);
+	font-family:'Quicksand', sans-serif;
+}
+
+.setup-body
+{
+	font-family:'Quicksand', sans-serif;
 }
 
 
@@ -41,6 +79,7 @@ img
 	top:2px;
 	font-size:1.4em;
 	color:#333;
+	cursor:pointer;
 }
 
 
@@ -56,10 +95,21 @@ button
 }
 
 
-button.start
+a.start, .start
 {
-	/*background:#e63946;*/
+	background:teal;
+	outline:none;
+	border-radius:4px;
+	color:#fff;
+	border:1px solid rgba(0,0,0,0.2);
+	font-size:0.9em;
+	cursor:pointer;
 	background:#CD2F2F;
+}
+
+a.start:hover
+{
+	color:#fff;
 }
 
 .overlay
@@ -76,4 +126,30 @@ button.start
 .overlay.active
 {
 	z-index:10;
+}
+
+.check-parent
+{
+	position:relative;
+	top:-10px;
+}
+
+
+
+@media(max-width:767px) and (min-width:577px)
+{
+	.aisles-container, .coordinator-container
+	{
+		width:80%;
+		border-right:1px solid rgba(0,0,0,0.06);
+	}	
+}
+
+
+@media(max-width:576px) 
+{
+	.aisles-container, .coordinator-container
+	{
+		width:100%;
+	}
 }
