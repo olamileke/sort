@@ -1,0 +1,5 @@
+
+<div class='p-3 d-flex steward-container' [class.mb-2]='sorted' [ngClass]='class'>
+	{{ name }}
+	<i class='fa fa-times align-self-center' (click)='deleteSteward()' *ngIf='!sorted'></i>
+</div>

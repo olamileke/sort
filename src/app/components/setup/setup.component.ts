@@ -52,7 +52,7 @@ export class SetupComponent implements OnInit {
 
   	if(this.form.aisle.length < 3) {
 
-  		this.notification.showErrorMsg("Must be at least 2 characters", "Error");
+  		this.notification.showErrorMsg("Must be at least 3 characters", "Error");
   		return false;
   	}
 
@@ -71,7 +71,7 @@ export class SetupComponent implements OnInit {
 
   addCoordinator() {
 
-  	if(this.form.coordinator.length < 4) {
+  	if(this.form.coordinator.length < 3) {
 
   		this.notification.showErrorMsg("Must be at least three characters", "Error");
   		return false;
@@ -112,8 +112,8 @@ export class SetupComponent implements OnInit {
   resetDetails() {
 
       this.details.event_name='ABC Event'
-      this.details.postings_per_aisle=1;
-      this.details.stewards_per_posting=2
+      this.details.postings_per_aisle=4;
+      this.details.stewards_per_posting=2;
       this.details.aisles=[];
       this.details.coordinators=[];
       // this.details.with_coordinators:boolean=true;

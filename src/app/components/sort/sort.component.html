@@ -3,22 +3,55 @@
 	
 	<img src="../../../assets/images/Setup/wall-pattern.jpg">
 
-	<div class='row d-flex justify-content-center mb-2'>
+	<div class='row d-flex justify-content-center mb-3'>
 		
-		<div class='col-6 d-flex justify-content-between relevant-info p-4'>
+		<div class='col-11 col-sm-9 col-lg-6 d-flex justify-content-between bg-white relevant-info p-4'>
 			<p class='m-0'>{{ event_name }}</p>
 			<p class='m-0'>{{ date }}</p>
 		</div>
 	</div>
 
-	<div class='row d-flex justify-content-center mb-2'>
+	<div class='row d-flex justify-content-center mb-5' style='font-family:"Quicksand", sans-serif;'>
 		
-		<div class='col-6 row d-flex justify-content-between p-4'>
+		<div class='col-11 col-sm-9 col-lg-6 row d-flex p-0'>
 			
-			<input type="text" name="" class='form-control'>
+			<div class='col-12 col-sm-8 col-md-9 mb-2 mb-sm-0 px-0'>
+				<input type="text" name="steward" [(ngModel)]='form.steward' class='form-control py-1' placeholder="Enter Steward Name">
+			</div>
+			<div class='col-6 col-sm-4 col-md-3 pl-0 pl-sm-3'>
+				<div>
+					<button class='p-2' (click)='addSteward()'>Add Steward</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
+
+	<div class='row px-2 px-sm-4' style='font-family:"Quicksand", sans-serif;' *ngIf='!sorted'>
+		<div class='col-sm-6 col-md-4 col-lg-3 mb-3' *ngFor='let steward of stewards'>
+			<app-steward [name]="steward" (delete)='deleteSteward($event)'></app-steward>
+		</div>
+	</div>
+
+	<div class='row px-2 px-sm-4' style='font-family:"Quicksand", sans-serif;' *ngIf='sorted'>
+		<div class='col-sm-6 col-md-4 col-lg-3 mb-4 text-center' *ngFor='let posting of postings'>
+			<p class='h4 mb-3 text-white'>{{ posting.aisle }}</p>
+			<p style='font-size:1.25em;' class='mb-4 text-white' *ngIf='posting.coordinator'>{{ posting.coordinator }}</p>
+
+			<div *ngFor='let sort of posting.sorts' class="mb-4">
+
+				<div *ngFor='let steward of sort'>
+					<app-steward [name]="steward" [sorted]='sorted' (delete)='deleteSteward($event)'></app-steward>
+				</div>
+	
+			</div>
+		</div>
+	</div>
+
+
+	<div class='sort-action d-flex justify-content-center align-items-center' (click)='sort()'>
+		<i class="fa fa-bolt"></i>
+	</div>
 
 
 </div>
