@@ -1,54 +1,20 @@
-
+ 
 <div class='container-fluid'>
 	
-	<img src="../../../assets/images/Setup/wall-pattern.jpg">
+	<img src="../../../assets/images/Setup/wall-pattern.jpg" class='background'>
 
 	<div class='row main d-flex justify-content-center align-items-center'>
 		
 		<div class='col-11 col-sm-9 col-lg-6 p-0 bg-white setup-container pb-4 pb-sm-5 d-flex flex-column'>
 
-			<div class='aisles-container d-flex flex-column px-4' [class.active]='showAisles'>
-
-				<div class='d-flex justify-content-between align-items-center heading py-3'>
-					<p class='m-0 title text-muted mb-0'>Aisles</p>
-				</div>
-
-				<div class='d-flex flex-column'>
-					<p *ngFor='let aisle of aisles' class='element text-muted mb-2'>
-						{{ aisle }}
-					</p>
-				</div>
-
-				<div class='d-flex justify-content-end'>
-					<button class='start d-inline py-1' style='width:30%' (click)='toggleViewAisles()'>Close</button>
-				</div>
-			</div>
-
-			<div class='coordinator-container d-flex flex-column px-4' [class.active]='showCoordinators'>
-
-				<div class='d-flex justify-content-between align-items-center heading py-3'>
-					<p class='m-0 title text-muted mb-0'>Coordinators</p>
-				</div>
-
-				<div class='d-flex flex-column'>
-					<p *ngFor='let coordinator of coordinators' class='element text-muted mb-2'>
-						{{ coordinator }}
-					</p>
-				</div>
-
-				<div class='d-flex justify-content-end'>
-					<button class='start d-inline py-1' style='width:30%' (click)='toggleViewCoordinators()'>Close</button>
-				</div>
-			</div>
-
 			<div class='d-flex justify-content-between align-items-center heading py-3 px-4'>
 				<p class='m-0 h4 text-muted'><a routerLink='' style='color:unset; text-decoration:none;'>Sort</a></p>
-				<!-- <i class='fa fa-refresh' (click)='resetDetails()'></i> -->
+				<img src="../../../assets/images/Setup/refresh.svg" width='25px' height='25px' style='cursor:pointer;' (click)='resetDetails(false)'>
 			</div>
 			<div class='setup-body px-4 mt-4'>
 				<div class='row'>
 					<div class='col-md-6 form-group'>
-						<input type="text" name="name" (input)='setEventName($event.target.value)' class='form-control' placeholder='Event Name'>
+						<input type="text" name="name" (input)='setEventName($event.target.value)' class='form-control' placeholder='Event Name' #evtName>
 					</div>
 					<div class='col-md-6 d-flex flex-column'>
 						<div class='d-flex'>
@@ -57,27 +23,26 @@
 						</div>
 						<div class='d-flex align-items-end pl-1 pl-md-0'>
 							<p class='m-0 mt-2 mr-2'>{{ aisles.length }} Aisles</p>
-							<a  style='color:unset;' (click)='toggleViewAisles()' *ngIf='!showAisles'>View</a>
-							<a  style='color:unset;' (click)='toggleViewAisles()' *ngIf='showAisles'>Hide</a>
+							<a  style='color:unset;' (click)='toggleViewAisles()'>View</a>
 						</div>
 					</div>
 					<div class='col-md-6 d-flex flex-column mt-2 mt-sm-3'>
 						<select class='custom-select mr-2' (change)='setNumPostings($event.target.value)'>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4" selected>4</option>
-							<option value="5">5</option>
+							<option value="1" [selected]='setSelectedNumPostings(1)'>1</option>
+							<option value="2" [selected]='setSelectedNumPostings(2)'>2</option>
+							<option value="3" [selected]='setSelectedNumPostings(3)'>3</option>
+							<option value="4" [selected]='setSelectedNumPostings(4)'>4</option>
+							<option value="5" [selected]='setSelectedNumPostings(5)'>5</option>
 						</select>
 						<p class='mt-2 pl-1 pl-md-0'>Postings per aisle</p>
 					</div>
 					<div class='col-md-6 d-flex flex-column mt-md-3'>
 						<select class='custom-select mr-2' (change)='setNumStewards($event.target.value)'>
-							<option value="1">1</option>
-							<option value="2" selected>2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
+							<option value="1" [selected]='setSelectedNumStewards(1)'>1</option>
+							<option value="2" [selected]='setSelectedNumStewards(2)'>2</option>
+							<option value="3" [selected]='setSelectedNumStewards(3)'>3</option>
+							<option value="4" [selected]='setSelectedNumStewards(4)'>4</option>
+							<option value="5" [selected]='setSelectedNumStewards(5)'>5</option>
 						</select>
 						<p class='mt-2 pl-1 pl-md-0'>Stewards per posting</p>
 					</div>
@@ -99,8 +64,7 @@
 						</div>
 						<div class='d-flex align-items-end pl-1 pl-md-0'>
 							<p class='m-0 mt-2 mr-2'>{{ coordinators.length }} Coordinators</p>
-							<a style='color:unset;' (click)='toggleViewCoordinators()' *ngIf='!showCoordinators'>View</a>
-							<a style='color:unset;' (click)='toggleViewCoordinators()' *ngIf='showCoordinators'>Hide</a>
+							<a style='color:unset;' (click)='toggleViewCoordinators()'>View</a>
 						</div>
 					</div>
 					<div class='col-md-6 mt-3 mt-md-0'>
@@ -110,4 +74,42 @@
 			</div>
 		</div>
 	</div>
+
+
+	<div class='aisles-container d-flex justify-content-center align-items-center text-white' [class.active]='showAisles'>
+		<div class='navtoggle' (click)='toggleViewAisles()'>
+			<span></span>
+		</div>
+
+		<div class='d-flex flex-column'>
+			<p class='m-0 h1 text-center' *ngIf='aisles.length > 0'>aisles</p>
+
+			<div class='d-flex flex-column mt-4 text-center' *ngIf='aisles.length > 0'>
+				<p *ngFor='let aisle of aisles' class='mb-2 h3'>{{ aisle | lowercase }}</p>
+			</div>
+
+			<div class='d-flex justify-content-center' *ngIf='aisles.length == 0'>
+				<p class='m-0 h2'>no aisles to display </p>
+			</div>
+		</div>
+	</div>
+
+	<div class='coordinators-container d-flex justify-content-center align-items-center text-white' [class.active]='showCoordinators'>
+		<div class='navtoggle' (click)='toggleViewCoordinators()'>
+			<span></span>
+		</div>
+
+		<div class='d-flex flex-column'>
+			<p class='m-0 h2 text-center' *ngIf='coordinators.length > 0'>coordinators</p>
+
+			<div class='d-flex flex-column mt-4 text-center' *ngIf='coordinators.length > 0'>
+				<p *ngFor='let coordinator of coordinators' class='mb-2 h3'>{{ coordinator | lowercase }}</p>
+			</div>
+
+			<div class='d-flex justify-content-center' *ngIf='coordinators.length == 0'>
+				<p class='m-0 h2'>no coordinators to display </p>
+			</div>
+		</div>
+	</div>
+	
 </div>

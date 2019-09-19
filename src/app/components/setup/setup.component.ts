@@ -16,8 +16,11 @@ export class SetupComponent implements OnInit {
   form:any={name:'',aisle:'', coordinator:''};
   showAisles:boolean=false;
   showCoordinators:boolean=false;
+  @ViewChild('evtName') evtName;
+  postings_per_aisle:number;
+  stewards_per_posting:number;
 
-  constructor(private details:DetailService, private notification:NotificationService) { }
+  constructor(private details:DetailService, private notification:NotificationService, private renderer:Renderer2) { }
 
   ngOnInit() {
 
@@ -39,6 +42,8 @@ export class SetupComponent implements OnInit {
 
       this.aisles=this.details.aisles;
       this.coordinators=this.details.coordinators;
+      this.postings_per_aisle=this.details.postings_per_aisle;
+      this.stewards_per_posting=this.details.stewards_per_posting;
   }
 
 
@@ -95,28 +100,66 @@ export class SetupComponent implements OnInit {
   }
 
 
+  setSelectedNumPostings(num:number) {
+
+      if(num == this.postings_per_aisle) {
+
+          return true;
+      }
+
+      return false;
+  }
+
+
   setNumPostings(num:number) {
 
-      alert(num);
+      this.postings_per_aisle=num;
       this.details.postings_per_aisle=num;
+  }
+
+
+  setSelectedNumStewards(num:number) {
+
+      if(num == this.stewards_per_posting) {
+
+          return true;
+      }
+
+      return false;
   }
 
 
   setNumStewards(num:number) {
 
-      alert(num);
+      this.stewards_per_posting=num;
       this.details.stewards_per_posting=num;
   }
 
 
-  resetDetails() {
+  resetDetails(auto=true) {
 
       this.details.event_name='ABC Event'
+      this.renderer.setProperty(this.evtName.nativeElement, 'value', '');
+
       this.details.postings_per_aisle=4;
+      this.postings_per_aisle=4;
+
       this.details.stewards_per_posting=2;
+      this.stewards_per_posting=2;
+
       this.details.aisles=[];
+      this.aisles=[];
+
       this.details.coordinators=[];
-      // this.details.with_coordinators:boolean=true;
+      this.coordinators=[];
+      // this.details.with_coordinators=true;
+
+      this.setValues();
+
+      if(!auto) {
+
+          this.notification.showSuccessMsg("Reset Successful");
+      }
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DetailService } from '../../services/detail.service';
 import { NotificationService } from '../../services/notification.service';
+import { CdkDragDrop, moveItemInArray , transferArrayItem} from '@angular/cdk/drag-drop';
 
 import { Stewards } from '../steward/stewards';
 
@@ -25,6 +26,7 @@ export class SortComponent implements OnInit {
   assignedCoordinators=[];
   assignedStewards=[];
   sorted:boolean=false;
+  requiredStewards:number;
 
   ngOnInit() {
 
@@ -37,7 +39,7 @@ export class SortComponent implements OnInit {
         this.postings.push(obj);
     }
 
-    console.log(this.detail.coordinators);
+    this.requiredStewards=this.postings.length * this.detail.postings_per_aisle * this.detail.stewards_per_posting;
   }
 
 
@@ -55,13 +57,19 @@ export class SortComponent implements OnInit {
 
   addSteward() {
 
+    if(this.sorted) {
+
+        this.notification.showErrorMsg("Sorting completed!");
+        return false;
+    }
+
     if(this.form.steward.length < 3) {
 
         this.notification.showErrorMsg("Must be at least 3 characters", "Error");
         return false;
     }
 
-  	this.stewards.push(this.form.steward);
+  	Stewards.push(this.form.steward);
   	this.form.steward='';
   }
 
@@ -75,12 +83,27 @@ export class SortComponent implements OnInit {
 
   sort() {
 
+    if(this.sorted) {
+
+        this.notification.showErrorMsg("Sorting completed!");
+        return false;
+    }
+
+
     if(this.detail.aisles.length == 0) {
 
       this.notification.showErrorMsg('No aisles', 'Incomplete Setup')
       return false;
     }
 
+
+    if(!this.checkStewardsLength()) {
+
+        return false;
+    }
+
+
+    this.assignStewards();
 
     if(this.detail.with_coordinators) {
 
@@ -99,7 +122,19 @@ export class SortComponent implements OnInit {
         this.assignCoordinators();
     }
 
-    this.assignStewards();
+     this.sorted=true;
+  }
+
+
+  checkStewardsLength():boolean {
+
+      if(this.requiredStewards > this.stewards.length) {
+
+          this.notification.showErrorMsg("Stewards are not enough", "Error");
+          return false;
+      }
+
+      return true;
   }
 
 
@@ -116,14 +151,13 @@ export class SortComponent implements OnInit {
               this.postings[i]['coordinator']=this.detail.coordinators[val];
               this.assignedCoordinators.push(this.detail.coordinators[val]);
               i++;
+              console.log(val);
           }
        }
   }
 
 
   assignStewards() {
-
-      this.sorted=true;
 
       for(let i=0; i < this.postings.length ; i++) {
 
@@ -150,5 +184,19 @@ export class SortComponent implements OnInit {
 
       console.log(this.postings);
   }
+
+
+
+  // draggedAndDropped(event) {
+
+  //     if (event.previousContainer === event.container) {
+  //       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //     } else {
+  //       transferArrayItem(event.previousContainer.data,
+  //         event.container.data,
+  //         event.previousIndex,
+  //         event.currentIndex);
+  //     }
+  // }
 
 }

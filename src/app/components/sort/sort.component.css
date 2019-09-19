@@ -31,7 +31,12 @@ button
 .relevant-info
 {
 	border-radius:4px;
-	font-family:"Raleway", sans-serif;
+	font-family:"Quicksand", sans-serif;
+}
+
+input
+{
+	font-family:"Manjari", sans-serif;
 }
 
 .sort-action
