@@ -1,5 +1,5 @@
 
-<div class='container-fluid pt-5'>
+<div class='container-fluid pt-5' [class.overlaid]='showUnAssigned'>
 	
 	<img src="../../../assets/images/Setup/wall-pattern.jpg">
 
@@ -33,15 +33,15 @@
 		</div>
 	</div>
 
-	<div class='row px-2 px-sm-4' style='font-family:"Quicksand", sans-serif;' *ngIf='sorted' cdkDropListGroup>
-		<div class='col-sm-6 col-md-4 col-lg-3 mb-4 text-center' *ngFor='let posting of postings' cdkDropList (cdkDropListDropped)='draggedAndDropped($event)'>
+	<div class='row px-2 px-sm-4' style='font-family:"Quicksand", sans-serif;' *ngIf='sorted'>
+		<div class='col-sm-6 col-md-4 col-lg-3 mb-4 text-center' *ngFor='let posting of postings'>
 			<p class='h4 mb-3 text-white'>{{ posting.aisle }}</p>
 			<p style='font-size:1.25em;' class='mb-4 text-white' *ngIf='posting.coordinator'>{{ posting.coordinator }}</p>
 
 			<div *ngFor='let sort of posting.sorts' class="mb-4">
 
 				<div *ngFor='let steward of sort'>
-					<app-steward [name]="steward" [sorted]='sorted' (delete)='deleteSteward($event)' cdkDrag></app-steward>
+					<app-steward [name]="steward" [sorted]='sorted' (delete)='deleteSteward($event)'></app-steward>
 				</div>
 	
 			</div>
@@ -49,9 +49,30 @@
 	</div>
 
 
-	<div class='sort-action d-flex justify-content-center align-items-center' (click)='sort()'>
-		<i class="fa fa-bolt"></i>
+	<div class='actions d-flex flex-column'>
+
+		<div class='unassigned-action d-flex justify-content-center align-items-center mb-2' [ngClass]="{'visible':sorted}" (click)='toggleShowUnAssigned()'>
+			<i class='fa fa-times'></i>
+		</div>
+
+		<div class='sort-action d-flex justify-content-center align-items-center' (click)='sort()'>
+			<i class="fa fa-bolt"></i>
+		</div>
+
+	</div>	
+
+</div>
+
+
+<div class='unassigned-container py-3 d-flex flex-column text-white justify-content-center align-items-center' [class.active]='showUnAssigned'>
+	
+	<div class='navtoggle' (click)='toggleShowUnAssigned()'>
+		<span></span>
 	</div>
 
+	<p class='h3 mb-3'>unassigned stewards ({{ unAssignedStewards.length }})</p>
 
+	<div>
+		<p class='m-0 mb-2 text-center h4' *ngFor='let steward of unAssignedStewards'>{{ steward | lowercase }}</p>
+	</div>
 </div>

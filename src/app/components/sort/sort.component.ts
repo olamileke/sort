@@ -19,12 +19,13 @@ export class SortComponent implements OnInit {
   date:string;
   months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   form:any={steward:''};
-  // stewards:any=this.detail.stewards;
   stewards=Stewards;
 
   postings:any=[];
   assignedCoordinators=[];
-  assignedStewards=[];
+  assignedStewards:any=[];
+  unAssignedStewards:any=[];
+  showUnAssigned:boolean=false;
   sorted:boolean=false;
   requiredStewards:number;
 
@@ -69,7 +70,8 @@ export class SortComponent implements OnInit {
         return false;
     }
 
-  	Stewards.push(this.form.steward);
+    this.stewards.push(this.form.steward);
+    this.notification.showSuccessMsg('Steward added successfully');
   	this.form.steward='';
   }
 
@@ -151,7 +153,6 @@ export class SortComponent implements OnInit {
               this.postings[i]['coordinator']=this.detail.coordinators[val];
               this.assignedCoordinators.push(this.detail.coordinators[val]);
               i++;
-              console.log(val);
           }
        }
   }
@@ -174,7 +175,8 @@ export class SortComponent implements OnInit {
 
                       posting.push(this.stewards[val]);
                       this.assignedStewards.push(this.stewards[val])
-                      count++;;
+                      count++;
+                      console.log(this.stewards[val]);
                   }
               }
 
@@ -182,7 +184,23 @@ export class SortComponent implements OnInit {
           }
       }
 
+      this.getUnAssignedStewards();
+
       console.log(this.postings);
+  }
+
+
+
+  getUnAssignedStewards() {
+
+      this.unAssignedStewards=this.stewards.filter(x => !this.assignedStewards.includes(x));
+      console.log(this.unAssignedStewards);
+  }
+
+
+  toggleShowUnAssigned() {
+
+      this.showUnAssigned=!this.showUnAssigned;
   }
 
 

@@ -41,8 +41,8 @@ a
 div.navtoggle
 {
 	position:absolute;
-	top:8%;
-	right:3%;
+	top:3vw;
+	right:3vw;
 	cursor:pointer;
 	padding:10px 0;
 	width:30px;
@@ -168,8 +168,17 @@ a.start:hover
 {
 	div.navtoggle
 	{
-		top:5%;
-		right:4%;
+		top:3vh;
+		right:2vh;
+	}
+}
+
+
+@media(max-width:576px) 
+{
+	div.navtoggle
+	{
+		width:25px;
 	}
 }
 

@@ -1,7 +1,8 @@
 .container-fluid
 {
+	position: relative;
 	background:rgba(0,0,0,0.002);
-	min-height:100vh;
+	max-height:100vh;
 }
 
 .main
@@ -24,6 +25,10 @@ img
 	width:100%;
 	height:100%;
 	object-fit: cover;
+}
+
+img.filler
+{
 	border-radius:10px;
 }
 
@@ -52,4 +57,39 @@ a
 	background:#CD2F2F;
 	text-decoration: none;	
 	border-radius:3px;
+}
+
+
+@media(max-width:991px)
+{
+	.main
+	{
+		padding:0;
+	}
+
+	.brand-container
+	{
+		position:relative;
+		padding-top:0;
+		top:-10vh;
+	}
+
+	.brand
+	{
+		color:#fff;
+	}
+
+	.main-container
+	{
+		align-items: center;
+	}
+}
+
+
+@media(max-width:576px)
+{
+	.brand-container
+	{
+		top:-5vh;
+	}
 }
