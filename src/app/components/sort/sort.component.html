@@ -70,9 +70,11 @@
 		<span></span>
 	</div>
 
-	<p class='h3 mb-3'>unassigned stewards ({{ unAssignedStewards.length }})</p>
+	<p class='h3 mb-3' *ngIf='unAssignedStewards.length > 0'>unassigned stewards ({{ unAssignedStewards.length }})</p>
 
-	<div>
+	<div *ngIf='unAssignedStewards.length > 0'>
 		<p class='m-0 mb-2 text-center h4' *ngFor='let steward of unAssignedStewards'>{{ steward | lowercase }}</p>
 	</div>
+
+	<p class='m-0 h3' *ngIf='unAssignedStewards.length == 0'>no unassigned stewards</p>
 </div>

@@ -176,7 +176,6 @@ export class SortComponent implements OnInit {
                       posting.push(this.stewards[val]);
                       this.assignedStewards.push(this.stewards[val])
                       count++;
-                      console.log(this.stewards[val]);
                   }
               }
 
@@ -185,8 +184,6 @@ export class SortComponent implements OnInit {
       }
 
       this.getUnAssignedStewards();
-
-      console.log(this.postings);
   }
 
 
@@ -194,6 +191,7 @@ export class SortComponent implements OnInit {
   getUnAssignedStewards() {
 
       this.unAssignedStewards=this.stewards.filter(x => !this.assignedStewards.includes(x));
+      console.log(this.stewards.length +' ' + this.assignedStewards.length);
       console.log(this.unAssignedStewards);
   }
 
@@ -202,19 +200,5 @@ export class SortComponent implements OnInit {
 
       this.showUnAssigned=!this.showUnAssigned;
   }
-
-
-
-  // draggedAndDropped(event) {
-
-  //     if (event.previousContainer === event.container) {
-  //       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //     } else {
-  //       transferArrayItem(event.previousContainer.data,
-  //         event.container.data,
-  //         event.previousIndex,
-  //         event.currentIndex);
-  //     }
-  // }
 
 }

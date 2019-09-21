@@ -13,6 +13,7 @@ import { SetupComponent } from './components/setup/setup.component';
 import { DetailService } from './services/detail.service';
 import { SortComponent } from './components/sort/sort.component';
 import { StewardComponent } from './components/steward/steward.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StewardComponent } from './components/steward/steward.component';
     HomeComponent,
     SetupComponent,
     SortComponent,
-    StewardComponent
+    StewardComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

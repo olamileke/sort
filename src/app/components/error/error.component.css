@@ -1,0 +1,50 @@
+
+
+.container-fluid
+{
+	position:relative;
+	min-height:100vh;
+}
+
+
+img
+{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+
+
+.main
+{
+	height:100vh;
+}
+
+
+.error
+{
+	font-size:6em;
+	font-family:'Manjari', sans-serif;
+}
+
+.error-message
+{
+	position:relative;
+	top:-39px;
+}
+
+a
+{
+	position:relative;
+	top:-23px;	
+	outline:none;
+	border-radius:4px;
+	color:#fff;
+	border:1px solid rgba(0,0,0,0.2);
+	font-size:1.1em;
+	cursor:pointer;
+	background:#CD2F2F;
+	width:fit-content;
+}
