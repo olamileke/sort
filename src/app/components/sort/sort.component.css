@@ -4,12 +4,44 @@
 {
 	position:relative;
 	min-height:100vh;
+	background:url('../../../assets/images/Setup/wall-pattern.jpg');
 }
 
 .container-fluid.overlaid
 {
 	overflow-y:hidden;
 	height:100vh;
+}
+
+
+.num-stewards
+{
+	position:fixed;
+	top:0;
+	height:100vh;
+	background:rgba(0,0,0,0.7);
+	left:100vw;
+	width:35vw;
+	z-index:999;
+	transition:all 1s ease-out;
+}
+
+
+.num-stewards.active
+{
+	left:65vw;
+}
+
+
+.steward-count
+{
+	font-size:6em;
+}
+
+.steward-text
+{
+	position:relative;
+	top:-25px;
 }
 
 
@@ -101,7 +133,7 @@ input
 
 div.navtoggle
 {
-	position:absolute;
+	position:fixed;
 	top:3vw;
 	right:3vw;
 	cursor:pointer;
@@ -115,9 +147,35 @@ div.navtoggle span, div.navtoggle span:after, div.navtoggle span:before
 	position:absolute;
 	width:100%;
 	height:2px;
+	background:#fff;
+	transition:all 1s ease-out;
 }
 
-div.navtoggle span:after, div.navtoggle span:before
+
+div.navtoggle span:before
+{
+	top:-8px;
+	left:0;
+	content: '';
+	background:#fff;
+}
+
+div.navtoggle span:after
+{
+	top:8px;
+	left:0;
+	content: '';
+	background:#fff;
+}
+
+
+div.navtoggle.active span
+{
+	background:transparent;
+}
+
+
+div.navtoggle.active span:after, div.navtoggle.active span:before
 {
 	top:0;
 	left:0;
@@ -126,7 +184,7 @@ div.navtoggle span:after, div.navtoggle span:before
 	background:#fff;
 }
 
-div.navtoggle span:before
+div.navtoggle.active span:before
 {
 	transform:rotate(45deg);
 }
@@ -162,6 +220,25 @@ i.fa-bolt, i.fa-times
 
 
 
+@media(max-width:991px)
+{
+	.num-stewards
+	{
+		left:0;
+		width:100vw;
+		opacity:0;
+		z-index:-1;
+	}
+
+	.num-stewards.active
+	{
+		left:0;
+		opacity:1;
+		z-index:999;
+	}
+}
+
+
 @media(max-width:800px) 
 {
 	div.navtoggle
@@ -187,5 +264,10 @@ i.fa-bolt, i.fa-times
 	div.navtoggle
 	{
 		width:25px;
+	}
+
+	.actions
+	{
+		top:75vh;
 	}
 }

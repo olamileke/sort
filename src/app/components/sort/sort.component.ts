@@ -27,6 +27,7 @@ export class SortComponent implements OnInit {
   unAssignedStewards:any=[];
   showUnAssigned:boolean=false;
   sorted:boolean=false;
+  showNumStewards:boolean=false;
   requiredStewards:number;
 
   ngOnInit() {
@@ -199,6 +200,12 @@ export class SortComponent implements OnInit {
   toggleShowUnAssigned() {
 
       this.showUnAssigned=!this.showUnAssigned;
+  }
+
+
+  toggleNumStewards() {
+
+      this.showNumStewards=!this.showNumStewards;
   }
 
 }

@@ -1,8 +1,19 @@
 
 <div class='container-fluid pt-5' [class.overlaid]='showUnAssigned'>
-	
-	<img src="../../../assets/images/Setup/wall-pattern.jpg">
 
+	<div class='navtoggle' (click)='toggleNumStewards()' [class.active]='showNumStewards'>
+		<span></span>
+	</div>
+
+	<div class='num-stewards d-flex justify-content-center align-items-center' [class.active]='showNumStewards'>
+		
+		<div class='d-flex flex-column align-items-center text-white' style="font-family:'Manjari', sans-serif;">
+			
+			<p class='m-0 steward-count'>{{ stewards.length }}</p>
+			<p class='steward-text h4'>Stewards</p>
+		</div>
+	</div>
+	
 	<div class='row d-flex justify-content-center mb-3'>
 		
 		<div class='col-11 col-sm-9 col-lg-6 d-flex justify-content-between bg-white relevant-info p-4'>
@@ -64,9 +75,9 @@
 </div>
 
 
-<div class='unassigned-container py-3 d-flex flex-column text-white justify-content-center align-items-center' [class.active]='showUnAssigned'>
+<div class='unassigned-container py-3 d-flex flex-column text-white justify-content-start py-5 align-items-center' [class.active]='showUnAssigned'>
 	
-	<div class='navtoggle' (click)='toggleShowUnAssigned()'>
+	<div class='navtoggle active' (click)='toggleShowUnAssigned()'>
 		<span></span>
 	</div>
 
