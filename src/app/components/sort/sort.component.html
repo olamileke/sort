@@ -9,7 +9,7 @@
 		
 		<div class='d-flex flex-column align-items-center text-white' style="font-family:'Manjari', sans-serif;">
 			
-			<p class='m-0 steward-count'>{{ stewards.length }}</p>
+			<p class='m-0 steward-count'>{{ getStewardCount() }}</p>
 			<p class='steward-text h4'>Stewards</p>
 		</div>
 	</div>
@@ -75,7 +75,7 @@
 </div>
 
 
-<div class='unassigned-container py-3 d-flex flex-column text-white justify-content-start py-5 align-items-center' [class.active]='showUnAssigned'>
+<div class='unassigned-container py-3 d-flex flex-column text-white py-5 align-items-center' [class.active]='showUnAssigned' [ngClass]="unassignedClass">
 	
 	<div class='navtoggle active' (click)='toggleShowUnAssigned()'>
 		<span></span>

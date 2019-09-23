@@ -30,6 +30,8 @@ export class SortComponent implements OnInit {
   showNumStewards:boolean=false;
   requiredStewards:number;
 
+  unassignedClass:any={};
+
   ngOnInit() {
 
   	this.date=this.setDate();
@@ -125,6 +127,7 @@ export class SortComponent implements OnInit {
         this.assignCoordinators();
     }
 
+     this.unassignedClass={'justify-content-center':this.unAssignedStewards.length <= 5, 'justify-content-start':this.unAssignedStewards.length > 5};
      this.sorted=true;
   }
 
@@ -175,7 +178,8 @@ export class SortComponent implements OnInit {
                   if(this.assignedStewards.indexOf(this.stewards[val]) == -1) {
 
                       posting.push(this.stewards[val]);
-                      this.assignedStewards.push(this.stewards[val])
+                      this.assignedStewards.push(val);
+                      this.stewards.splice(val,1);
                       count++;
                   }
               }
@@ -191,9 +195,7 @@ export class SortComponent implements OnInit {
 
   getUnAssignedStewards() {
 
-      this.unAssignedStewards=this.stewards.filter(x => !this.assignedStewards.includes(x));
-      console.log(this.stewards.length +' ' + this.assignedStewards.length);
-      console.log(this.unAssignedStewards);
+      this.unAssignedStewards=this.stewards;
   }
 
 
@@ -206,6 +208,17 @@ export class SortComponent implements OnInit {
   toggleNumStewards() {
 
       this.showNumStewards=!this.showNumStewards;
+  }
+
+
+  getStewardCount():number {
+
+      if(!this.sorted) {
+
+          return this.stewards.length;
+      }
+
+      return this.stewards.length + this.assignedStewards.length;
   }
 
 }
