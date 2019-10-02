@@ -5,6 +5,7 @@
 	position:relative;
 	min-height:100vh;
 	background:url('../../../assets/images/Setup/wall-pattern.jpg');
+	background-size:cover;
 }
 
 .container-fluid.overlaid
@@ -69,6 +70,7 @@ button
 .relevant-info
 {
 	font-family:"Quicksand", sans-serif;
+	border-radius:4px;
 }
 
 input
@@ -222,6 +224,12 @@ i.fa-bolt, i.fa-times
 
 @media(max-width:991px)
 {
+
+	.container-fluid
+	{
+		background-size: unset;
+	}
+
 	.num-stewards
 	{
 		left:0;

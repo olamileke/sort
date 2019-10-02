@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<div class='row d-flex justify-content-center mb-5' style='font-family:"Quicksand", sans-serif;'>
+	<div class='row d-flex justify-content-center mb-4 mb-sm-5' style='font-family:"Quicksand", sans-serif;'>
 		
 		<div class='col-11 col-sm-9 col-lg-6 row d-flex p-0'>
 			
@@ -52,7 +52,7 @@
 			<div *ngFor='let sort of posting.sorts' class="mb-4">
 
 				<div *ngFor='let steward of sort'>
-					<app-steward [name]="steward" [sorted]='sorted' (delete)='deleteSteward($event)'></app-steward>
+					<app-steward [name]="steward" [sorted]='sorted'></app-steward>
 				</div>
 	
 			</div>

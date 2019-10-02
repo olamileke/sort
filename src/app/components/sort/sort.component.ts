@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { DetailService } from '../../services/detail.service';
 import { NotificationService } from '../../services/notification.service';
-import { CdkDragDrop, moveItemInArray , transferArrayItem} from '@angular/cdk/drag-drop';
 
 import { Stewards } from '../steward/stewards';
 
@@ -51,7 +50,7 @@ export class SortComponent implements OnInit {
 
   	let dateObj=new Date();
 
-  	let month=this.months[dateObj.getMonth() - 1].slice(0,3);
+  	let month=this.months[dateObj.getMonth()].slice(0,3);
   	let date=dateObj.getDate();
   	let year=dateObj.getFullYear();
 
